@@ -17,8 +17,8 @@ We want to run AI
 
 ## Depthwise Separable Convolution
 
-* A 2D filter is applied to each channel separately
-* The resulting feature map is convolved with a 1x1 convolution
+* A 2D filter is applied to each channel separately (M channels)
+* The resulting feature map is convolved with N 1x1 convolutions
 
 ### An image is better
 
@@ -40,3 +40,24 @@ We want to run AI
 
 # Mobilenet V2
 
+* Builds upon the Depthwise Separable Convolution
+* Ingest new concepts such as Residual Networks (Resnet) and bottleneck layers
+* Puts a new spin on them by creating the Inverted Residual Bottleneck layer
+
+## Let's talk about information loss
+
+![Information Loss](./information_loss.png)
+
+## Inverted Residual Bottleneck Layers
+
+### What's an Inverted Bottleneck layer?
+
+![Bottleneck Layer](./bottleneck.png)
+
+### What's an **Inverted** Residual Bottleneck layer?
+
+![Inverted Residual Bottleneck](./inverted_residual.png)
+
+### Give me the data, I don't care about your theoretics
+
+![Inverted residual bottleneck block structure](./inverted_residual_bottleneck_layer.png)
