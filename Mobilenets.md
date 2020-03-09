@@ -61,3 +61,38 @@ We want to run AI
 ### Give me the data, I don't care about your theoretics
 
 ![Inverted residual bottleneck block structure](./inverted_residual_bottleneck_layer.png)
+
+### Performance-wise, it's cool
+
+![Performance of the Mobilenet V2](./v2_performance.png)
+
+# Mobilenet v3
+
+* We use a new activation function! (h-swish)
+* We add a new block layer! (Squeeze-and-Excite)
+* We let the machine search for the architecture!
+
+## Squeeze-and-Excite
+
+### Overview
+
+![Overview](./se_overview.png)
+
+### Specific implementation in a ResNet
+
+![](./se_resnet.png)
+
+### In the Mobilenet V3
+
+![](./v3_se.png)
+
+## h-swish
+
+![](./swish.png)
+
+![](./h_swish.png)
+
+### Not that different between them
+
+![](./swish_vs_h_swish.png)
+
