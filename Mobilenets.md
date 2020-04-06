@@ -1,14 +1,22 @@
 % From Dumbphone to Smartphone: How to run Computer Vision on anything
 % Jordi Olivares
-% March 12, 2020
-
-# What is this talk about
+% April 6, 2020
 
 ## The problem
 
-We want to run AI
+Want: Run Computer Vision on toaster phone
 
-# Mobilenet V1
+Problem: Toaster phone has toast CPU
+
+Solution: Make algorithm run on toast
+
+## What is this talk about
+
+This talk is about the techniques used in the Computer Vision world in order to make their networks perform better and faster.
+
+We won't be talking about actual Neural Net architectures, but about the blocks and knowledge inside of them. We will focus on the Mobilenet family.
+
+# MobileNet V1
 
 ## The core teaching
 
@@ -17,20 +25,20 @@ We want to run AI
 
 ## Depthwise Separable Convolution
 
-* A 2D filter is applied to each channel separately (M channels)
-* The resulting feature map is convolved with N 1x1 convolutions
+* A 2D filter of size $D_K$ is applied to each channel separately ($M$ channels) on an image of size $D_F$
+* The resulting feature map is convolved with $N$ 1x1 convolutions
 
-### An image is better
+## An image is better than words
 
-![Depthwise Separable Convolution 1](./dep_sep_conv_part_1.png)
+![](./dep_sep_conv_part_1.png)
 
-![Depthwise Separable Convolution 1](./dep_sep_conv_part_2.png)
+![](./dep_sep_conv_part_2.png)
 
-### Reduction in operations (w.r.t. normal Convolution)
+## Reduction in operations (w.r.t. normal Convolution)
 
-![MAdds](./madds.png)
+![](./madds.png)
 
-### Empirically it works almost the same
+## Empirically it works almost the same
 
 | Neural Net    | Accuracy | Million MAdds | Million Parameters |
 | ------------- | -------- | ------------- | ------------------ |
@@ -38,7 +46,7 @@ We want to run AI
 | GoogleNet     | 69.8%    | 1550          | 6.8                |
 | VGG-16        | 71.5%    | 15300         | 138                |
 
-# Mobilenet V2
+# MobileNet V2
 
 * Builds upon the Depthwise Separable Convolution
 * Ingest new concepts such as Residual Networks (Resnet) and bottleneck layers
@@ -46,53 +54,62 @@ We want to run AI
 
 ## Let's talk about information loss
 
-![Information Loss](./information_loss.png)
+![](./information_loss.png)
 
-## Inverted Residual Bottleneck Layers
+## What's an Inverted Bottleneck layer?
 
-### What's an Inverted Bottleneck layer?
+![](./bottleneck.png)
 
-![Bottleneck Layer](./bottleneck.png)
+## What's an **Inverted** Residual Bottleneck layer?
 
-### What's an **Inverted** Residual Bottleneck layer?
+![](./inverted_residual.png)
 
-![Inverted Residual Bottleneck](./inverted_residual.png)
+## Give me the data, I don't care about your theoretics
 
-### Give me the data, I don't care about your theoretics
+![](./inverted_residual_bottleneck_layer.png)
 
-![Inverted residual bottleneck block structure](./inverted_residual_bottleneck_layer.png)
+## Performance-wise, it's cool
 
-### Performance-wise, it's cool
+![](./v2_performance.png)
 
-![Performance of the Mobilenet V2](./v2_performance.png)
-
-# Mobilenet v3
+# MobileNet v3
 
 * We use a new activation function! (h-swish)
 * We add a new block layer! (Squeeze-and-Excite)
-* We let the machine search for the architecture!
+* We let the machine search for the architecture! (**Won't talk about it here**)
 
 ## Squeeze-and-Excite
 
-### Overview
+![](./se_overview.png)
 
-![Overview](./se_overview.png)
-
-### Specific implementation in a ResNet
+## Specific implementation in a ResNet
 
 ![](./se_resnet.png)
 
-### In the Mobilenet V3
+## In the Mobilenet V3
 
 ![](./v3_se.png)
 
-## h-swish
+## Swish
+
+![](./swish.png)
+
+## Swish vs Other activation functions
+
+![](./swish-vs-others.png)
+
+# h-swish
 
 ![](./swish.png)
 
 ![](./h_swish.png)
 
-### Not that different between them
+## Not that different between them
 
 ![](./swish_vs_h_swish.png)
 
+# Conclusion
+
+These small changes can lead to drastic reduction in inference time at minimal cost of performance.
+
+I recommend starting with MobileNet V3 as you'll see reduced costs in computation (you can use a smaller instance) and it opens more use cases.
